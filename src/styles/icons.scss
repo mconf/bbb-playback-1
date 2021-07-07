@@ -15,11 +15,11 @@
 }
 
 
-.icon-arrow-left:before {
+.icon-arrowLeft:before {
   content: "\e90d";
 }
 
-.icon-arrow-right:before {
+.icon-arrowRight:before {
   content: "\e90a";
 }
 
@@ -39,6 +39,10 @@
   content: "\e912";
 }
 
+.icon-externalVideos:before {
+  content: "\e801";
+}
+
 .icon-fullscreen:before {
   content: "\e92a";
 }
@@ -53,6 +57,10 @@
 
 .icon-presentation:before {
   content: "\e90b";
+}
+
+.icon-questions:before {
+  content: "\e90f";
 }
 
 .icon-restore:before {
