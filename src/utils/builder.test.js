@@ -1,13 +1,13 @@
 import {
-  addPollsToChat,
   buildStyle,
   decodeXML,
   getAttr,
   getId,
   getNumbers,
+  mergeMessages,
 } from './builder';
 
-it('merges and sorts chat and polls arrays', () => {
+it('merges and sorts messages arrays', () => {
   let chat = [
     { timestamp: 5.1, type: 'chat' },
     { timestamp: 11.9, type: 'chat' },
@@ -20,13 +20,32 @@ it('merges and sorts chat and polls arrays', () => {
     { timestamp: 10.1, type: 'poll' },
   ];
 
-  expect(addPollsToChat(chat, polls)).toEqual([
+  let questions = [
+    { timestamp: 4.1, type: 'question' },
+    { timestamp: 16.8, type: 'question' },
+    { timestamp: 10.2, type: 'question' },
+  ];
+
+  let videos = [
+    { timestamp: 3.0, type: 'video' },
+    { timestamp: 19.0, type: 'video' },
+    { timestamp: 12.1, type: 'video' },
+  ];
+
+
+  expect(mergeMessages(chat, polls, videos)).toEqual([
+    { timestamp: 3.0, type: 'video' },
     { timestamp: 4.0, type: 'poll' },
+    { timestamp: 4.1, type: 'question' },
     { timestamp: 5.1, type: 'chat' },
     { timestamp: 10.1, type: 'chat' },
     { timestamp: 10.1, type: 'poll' },
+    { timestamp: 10.2, type: 'question' },
     { timestamp: 11.9, type: 'chat' },
+    { timestamp: 12.1, type: 'video' },
+    { timestamp: 16.8, type: 'question' },
     { timestamp: 16.9, type: 'poll' },
+    { timestamp: 19.0, type: 'video' },
   ]);
 });
 
