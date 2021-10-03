@@ -32,6 +32,8 @@ let STATUS = STATE.WAITING;
 
 const DATA = {};
 
+let FALLBACK = false;
+
 const hasFetched = () => {
   if (STATUS !== STATE.WAITING) return true;
 
@@ -110,6 +112,26 @@ const fetchMedia = (recordId, onUpdate, onLoaded, onError) => {
       onUpdate(ID.MEDIA);
       if (hasLoaded()) onLoaded();
     } else {
+      tryMediaFallback(recordId, onUpdate, onLoaded, onError);
+    }
+  });
+};
+
+// Try playing old recording formats with audio only
+// IMPORTANT: This will only work for webm format
+//
+// TODO: Add support for mp3 format
+const tryMediaFallback = (recordId, onUpdate, onLoaded, onError) => {
+  const url = buildFileURL('audio/audio.webm', recordId);
+  fetch(url, { method: 'HEAD' }).then(response => {
+    const { ok } = response;
+    if (ok) {
+      logger.debug(ID.STORAGE, ID.MEDIA, response);
+      FALLBACK = true;
+      DATA[ID.MEDIA] = ['webm'];
+      onUpdate(ID.MEDIA);
+      if (hasLoaded()) onLoaded();
+    } else {
       onError(ERROR.NOT_FOUND);
     }
   });
@@ -131,6 +153,9 @@ const storage = {
   get data() {
     return DATA;
   },
+  get fallback() {
+    return FALLBACK;
+  },
   get built() {
     return {
       captions: hasProperty(DATA, ID.CAPTIONS),
@@ -151,7 +176,7 @@ const storage = {
       polls: !isEmpty(this.polls),
       questions: !isEmpty(this.questions),
       videos: !isEmpty(this.videos),
-      presentation: hasPresentation(this.shapes.slides),
+      presentation: hasPresentation(this.slides),
       screenshare: !isEmpty(this.screenshare),
     };
   },
@@ -206,9 +231,15 @@ const storage = {
   get shapes() {
     return DATA[ID.SHAPES];
   },
+  get slides() {
+    return this.shapes[ID.SLIDES];
+  },
+  get canvases() {
+    return this.shapes[ID.CANVASES];
+  },
   get thumbnails() {
     if (!hasProperty(DATA, ID.THUMBNAILS)) {
-      DATA[ID.THUMBNAILS] = addAlternatesToThumbnails(this.shapes.thumbnails, this.alternates);
+      DATA[ID.THUMBNAILS] = addAlternatesToThumbnails(this.shapes[ID.THUMBNAILS], this.alternates);
     }
 
     return DATA[ID.THUMBNAILS];
