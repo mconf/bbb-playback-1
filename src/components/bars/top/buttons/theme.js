@@ -19,12 +19,35 @@ const intlMessages = defineMessages({
   },
 });
 
+const themeOptions = {};
+
+const css = `
+.video-js .vjs-volume-level,
+.video-js .vjs-play-progress {
+  background-color: white;
+}
+`;
+
+const ignoreInlineStyle = [
+  'g > circle',
+  'g > line',
+  'g > path',
+  'g > polygon',
+  'g > polyline',
+  'g > foreignObject',
+];
+
+const fixes = {
+  css,
+  ignoreInlineStyle,
+};
+
 const Theme = () => {
   const intl = useIntl();
   const [dark, setDark] = useState(false);
 
   const toggleTheme = () => {
-    dark ? disable() : enable();
+    dark ? disable() : enable(themeOptions, fixes);
     setDark(prevDark => !prevDark);
   };
 
