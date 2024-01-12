@@ -83,6 +83,8 @@ const Messages = ({
                     url={item.url}
                     timestamp={timestamp}
                     type={item.type}
+                    isAudio={item.isAudio}
+                    isLocal={item.isLocal}
                   />
                 </span>
               );

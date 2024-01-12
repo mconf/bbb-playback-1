@@ -112,6 +112,8 @@ const buildVideos = result => {
     return {
       timestamp: r.timestamp,
       url: r.external_video_url,
+      isAudio: r?.is_audio === 'true',
+      isLocal: r?.is_local === 'true',
     };
   });
 
