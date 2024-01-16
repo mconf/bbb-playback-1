@@ -33,6 +33,7 @@
   "player.chat.message.question.name": "Question",
   "player.chat.message.question.answer": "Answer",
   "player.chat.message.video.name": "External video",
+  "player.chat.message.audio.name": "Audio player",
   "player.chat.wrapper.aria": "Chat area",
   "player.notes.wrapper.aria": "Notes area",
   "player.presentation.wrapper.aria": "Presentation area",
