@@ -26,6 +26,7 @@ const files = {
   questions: 'questions.json',
   screenshare: 'deskshare.xml',
   shapes: 'shapes.svg',
+  tldraw: 'tldraw.json',
   videos: 'external_videos.json',
 };
 
