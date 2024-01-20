@@ -101,6 +101,16 @@ const buildPolls = result => {
   return data;
 };
 
+// TODO
+const buildQuestions = result => {
+  if (!result) return [];
+
+  let data = [];
+  data = result;
+
+  return data;
+};
+
 const buildVideos = result => {
   if (!result) return [];
 
@@ -108,6 +118,8 @@ const buildVideos = result => {
     return {
       timestamp: r.timestamp,
       url: r.external_video_url,
+      isAudio: r?.is_audio === 'true',
+      isLocal: r?.is_local === 'true',
     };
   });
 
@@ -503,6 +515,9 @@ const build = (filename, value) => {
         case config.polls:
           data = buildPolls(value);
           break;
+        case config.questions:
+          data = buildQuestions(value);
+          break;
         case config.videos:
           data = buildVideos(value);
           break;
@@ -581,10 +596,11 @@ const addAlternatesToThumbnails = (thumbnails, alternates) => {
   });
 };
 
-const mergeMessages = (chat, polls, videos) => {
+const mergeMessages = (chat, polls, questions, videos) => {
   return [
     ...chat,
     ...polls,
+    ...questions,
     ...videos,
   ].sort((a, b) => a.timestamp - b.timestamp);
 };
