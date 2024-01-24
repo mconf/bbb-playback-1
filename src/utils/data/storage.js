@@ -244,6 +244,9 @@ const storage = {
 
     return DATA[ID.THUMBNAILS];
   },
+  get tldraw() {
+    return DATA[ID.TLDRAW];
+  },
 };
 
 export default storage;
