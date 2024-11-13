@@ -34,6 +34,7 @@ const User = ({
   moderator,
   text,
   timestamp,
+  reactions,
 }) => {
 
   return (
@@ -43,6 +44,7 @@ const User = ({
       emphasized={emphasized}
       initials={initials}
       name={name}
+      reactions={reactions}
       timestamp={timestamp}
     >
       <Text
@@ -50,6 +52,7 @@ const User = ({
         hyperlink={hyperlink}
         text={text}
       />
+      
     </Message>
   );
 };

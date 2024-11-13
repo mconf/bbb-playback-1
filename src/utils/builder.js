@@ -454,6 +454,15 @@ const buildChat = result => {
       const emphasized = chat._chatEmphasizedText === 'true';
       const moderator = chat._senderRole === ROLES.MODERATOR;
 
+      // Normalize reactions to always be an array
+      const reactionsList = chat.reactions ? convertToArray(chat.reactions.reaction) : [];
+      const reactions = reactionsList.map((messageReaction) => {
+        console.log('Inside the builder ====', messageReaction);
+        return {
+          emoji: messageReaction._emoji,
+          count: messageReaction._count,
+        };
+      });
       return {
         clear,
         emphasized,
@@ -462,6 +471,7 @@ const buildChat = result => {
         name: chat._name,
         message,
         moderator,
+        reactions,
         timestamp: parseFloat(chat._in),
       };
     });

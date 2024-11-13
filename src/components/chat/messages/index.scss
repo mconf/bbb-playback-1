@@ -7,6 +7,8 @@
 .message {
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
+
   width: 100%;
 
   [dir="ltr"] & {
@@ -15,6 +17,10 @@
 
   [dir="rtl"] & {
     padding: 0 $padding $padding 0;
+  }
+
+  .main-content-wrapper {
+    display: flex;
   }
 
   .data {

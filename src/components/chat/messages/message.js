@@ -5,6 +5,7 @@ import Info from './info';
 import Margin from './margin';
 import player from 'utils/player';
 import './index.scss';
+import ChatMessageReactions from './reactions';
 
 const propTypes = {
   active: PropTypes.bool,
@@ -39,6 +40,7 @@ const Message = ({
   icon,
   initials,
   name,
+  reactions,
   timestamp,
 }) => {
   const handleOnClick = () => {
@@ -47,24 +49,32 @@ const Message = ({
 
   return (
     <div className="message">
-      <Margin
-        active={active}
-        circle={circle}
-        icon={icon}
-        initials={initials}
-        name={name}
-        onClick={() => handleOnClick()}
-      />
-      <div className="data">
-        <Info
+      <div
+        className="main-content-wrapper"
+      >
+        <Margin
           active={active}
+          circle={circle}
+          icon={icon}
+          initials={initials}
           name={name}
-          timestamp={timestamp}
+          onClick={() => handleOnClick()}
         />
-        <div className={cx('text', { inactive: !active, emphasized })}>
-          {children}
+        <div className="data">
+          <Info
+            active={active}
+            name={name}
+            timestamp={timestamp}
+          />
+          <div className={cx('text', { inactive: !active, emphasized })}>
+            {children}
+          </div>
         </div>
       </div>
+      <ChatMessageReactions
+        reactions={reactions}
+        active={active}
+      />
     </div>
   );
 };
