@@ -39,6 +39,7 @@ const Message = ({
   emphasized,
   icon,
   initials,
+  edited,
   name,
   reactions,
   timestamp,
@@ -62,6 +63,7 @@ const Message = ({
         />
         <div className="data">
           <Info
+            edited={edited}
             active={active}
             name={name}
             timestamp={timestamp}

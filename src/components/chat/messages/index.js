@@ -36,6 +36,7 @@ const Messages = ({
               return (
                 <span ref={node => setRef(node, index)}>
                   <UserMessage
+                    edited={!!item.lastEditedTimestamp}
                     reactions={item.reactions}
                     active={active}
                     emphasized={item.emphasized}

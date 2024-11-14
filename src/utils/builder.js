@@ -456,13 +456,11 @@ const buildChat = result => {
 
       // Normalize reactions to always be an array
       const reactionsList = chat.reactions ? convertToArray(chat.reactions.reaction) : [];
-      const reactions = reactionsList.map((messageReaction) => {
-        console.log('Inside the builder ====', messageReaction);
-        return {
+      const reactions = reactionsList.map((messageReaction) => ({
           emoji: messageReaction._emoji,
           count: messageReaction._count,
-        };
-      });
+        }),
+      );
       return {
         clear,
         emphasized,
@@ -472,6 +470,7 @@ const buildChat = result => {
         message,
         moderator,
         reactions,
+        lastEditedTimestamp: chat._lastEditedTimestamp,
         timestamp: parseFloat(chat._in),
       };
     });

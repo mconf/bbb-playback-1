@@ -33,6 +33,7 @@ const User = ({
   name,
   moderator,
   text,
+  edited,
   timestamp,
   reactions,
 }) => {
@@ -43,6 +44,7 @@ const User = ({
       circle={!moderator}
       emphasized={emphasized}
       initials={initials}
+      edited={edited}
       name={name}
       reactions={reactions}
       timestamp={timestamp}

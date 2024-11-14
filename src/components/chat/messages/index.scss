@@ -1,7 +1,7 @@
 @import 'src/styles/sizes';
 
 :root {
-  --message-box-shadow-color: var(--gray-light);
+  --gray-light-color: var(--gray-light);
 }
 
 .message {
@@ -53,6 +53,20 @@
     }
   }
 
+  .edited-tag {
+    color: var(--gray-light-color);
+    font-style: italic;
+    font-size: 75%;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    line-height: 1;
+  }
+  
+  .edited-label {
+    margin-left: 0.25rem;
+  }
+
   .name {
     font-weight: var(--font-weight-semi-bold);
     overflow: hidden;
@@ -101,7 +115,7 @@
 
     &:focus,
     &:hover {
-      box-shadow: 0 0 0 $margin-extra-small var(--message-box-shadow-color);
+      box-shadow: 0 0 0 $margin-extra-small var(--gray-light-color);
     }
   }
 
