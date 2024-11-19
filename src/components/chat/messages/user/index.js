@@ -35,6 +35,8 @@ const User = ({
   text,
   edited,
   timestamp,
+  messageToBeReplied,
+  scrollTo,
   reactions,
 }) => {
 
@@ -48,6 +50,8 @@ const User = ({
       name={name}
       reactions={reactions}
       timestamp={timestamp}
+      messageToBeReplied={messageToBeReplied}
+      scrollTo={scrollTo}
     >
       <Text
         active={active}

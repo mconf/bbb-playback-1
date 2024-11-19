@@ -5,6 +5,7 @@ import Info from './info';
 import Margin from './margin';
 import player from 'utils/player';
 import './index.scss';
+import Reply from './reply';
 import ChatMessageReactions from './reactions';
 
 const propTypes = {
@@ -39,6 +40,8 @@ const Message = ({
   emphasized,
   icon,
   initials,
+  messageToBeReplied,
+  scrollTo,
   edited,
   name,
   reactions,
@@ -68,6 +71,14 @@ const Message = ({
             name={name}
             timestamp={timestamp}
           />
+          {messageToBeReplied &&
+            <Reply
+              active={active}
+              scrollTo={scrollTo}
+              idToReference={messageToBeReplied.id}
+              text={messageToBeReplied.message}
+            />
+          }
           <div className={cx('text', { inactive: !active, emphasized })}>
             {children}
           </div>

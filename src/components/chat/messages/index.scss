@@ -2,6 +2,27 @@
 
 :root {
   --gray-light-color: var(--gray-light);
+  --gray-lightest-color: var(--gray-lightest);
+  --highlight-color: var(--blue);
+}
+
+.reply-tag {
+  background-color: var(--gray-lightest-color);
+  display: flex;
+  width: 90%;
+  padding: $padding-small;
+  margin-bottom: $margin-extra-small;
+  border-radius: .35rem;
+  align-items: center;
+  line-height: 1;
+}
+
+.user-message-wrapper {
+  transition: background-color .5s ease;
+}
+
+.highlight {
+  background-color: var(--highlight-color);
 }
 
 .message {

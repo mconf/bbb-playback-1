@@ -20,6 +20,7 @@ const defaultProps = {
 
 const Messages = ({
   currentIndex,
+  scrollTo,
   setRef,
 }) => {
 
@@ -33,8 +34,17 @@ const Messages = ({
           switch (type) {
             case ID.USERS:
 
+              const indexOfMessageToBeReplied = (item.replyToMessageId) 
+                ? storage.messages.findIndex((message) => message.id === item.replyToMessageId) : -1;
+              const messageToBeReplied = (indexOfMessageToBeReplied !== -1) 
+                ? storage.messages[indexOfMessageToBeReplied]
+                : null;
               return (
-                <span ref={node => setRef(node, index)}>
+                <span
+                  key={item.id}
+                  id={item.id}
+                  className='user-message-wrapper'
+                  ref={node => setRef(node, index)}>
                   <UserMessage
                     edited={!!item.lastEditedTimestamp}
                     reactions={item.reactions}
@@ -44,6 +54,8 @@ const Messages = ({
                     initials={item.initials}
                     moderator={item.moderator}
                     name={item.name}
+                    messageToBeReplied={messageToBeReplied}
+                    scrollTo={scrollTo}
                     text={item.message}
                     timestamp={timestamp}
                   />

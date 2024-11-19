@@ -463,6 +463,7 @@ const buildChat = result => {
       );
       return {
         clear,
+        id: chat._id,
         emphasized,
         hyperlink: message !== chat._message,
         initials,
@@ -470,6 +471,7 @@ const buildChat = result => {
         message,
         moderator,
         reactions,
+        replyToMessageId: chat._replyToMessageId,
         lastEditedTimestamp: chat._lastEditedTimestamp,
         timestamp: parseFloat(chat._in),
       };
