@@ -466,14 +466,25 @@ const buildChat = result => {
       const emphasized = chat._chatEmphasizedText === 'true';
       const moderator = chat._senderRole === ROLES.MODERATOR;
 
+      // Normalize reactions to always be an array
+      const reactionsList = chat.reactions ? convertToArray(chat.reactions.reaction) : [];
+      const reactions = reactionsList.map((messageReaction) => ({
+          emoji: messageReaction._emoji,
+          count: messageReaction._count,
+        }),
+      );
       return {
         clear,
+        id: chat._id,
         emphasized,
         hyperlink: message !== chat._message,
         initials,
         name: chat._name,
         message,
         moderator,
+        reactions,
+        replyToMessageId: chat._replyToMessageId,
+        lastEditedTimestamp: chat._lastEditedTimestamp,
         timestamp: parseFloat(chat._in),
       };
     });
