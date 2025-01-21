@@ -31,6 +31,7 @@ const defaultProps = {
   initials: '',
   name: '',
   timestamp: 0,
+  reactions: [],
 };
 
 const Message = ({
